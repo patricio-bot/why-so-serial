@@ -15,6 +15,14 @@ router.get('/killers/alphabet/:letter', async (req, res, next) => {
     const killersAlphabetical = [];
 
     killers.map(killer => {
+<<<<<<< HEAD
+      //console.log('Our killers: ', killer.lastName)
+      if (killer.lastName) {
+        if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
+        killersAlphabetical.push(killer)
+      }
+      }
+=======
       console.log('Our killers: ', killer.name, killer.lastName)
       if (killer.lastName) {
         if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
@@ -22,6 +30,7 @@ router.get('/killers/alphabet/:letter', async (req, res, next) => {
         }
       }
 
+>>>>>>> b97189bfcedefb42d3b228b6543498c59e89c0f0
     })
     res.render('killers', { killers: killersAlphabetical });
   }
@@ -33,7 +42,6 @@ router.get('/killers/alphabet/:letter', async (req, res, next) => {
 router.get('/killers/search/:zodiac', (req, res, next) => {
   let zodiac = req.params.zodiac;
 
-  console.log(zodiac)
   Killer.find({ zodiacSign: zodiac })
     .then((killers) => {
       console.log(killers)
@@ -68,19 +76,6 @@ router.get('/killers/:killerId', (req, res, next) => {
     })
     .catch(next);
 });
-
-/* router.use((req, res, next) => {
-  if (req.session.currentUser) {
-    next();
-    return;
-  }
-  res.redirect('/login');
-
-});
-
-router.get('/add-killer', (req, res, next) => {
-  res.render('private/add-killer');
-}); */
 
 
 module.exports = router;

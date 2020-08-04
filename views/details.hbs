@@ -20,21 +20,21 @@
         <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
         {{/if}}
         {{#if killer.yearsActive}}
-        <p><b>Years Active:</b>
+            <p><b>Years Active:</b>
             {{#if killer.yearsActive.[1]}}
-            {{#each killer.yearsActive}}
-            {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
-            {{/each}}
+                {{#each killer.yearsActive}}
+                    {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
+                {{/each}}
             {{else}}
-            {{killer.yearsActive}}
+                {{killer.yearsActive}}
             {{/if}}
-            {{/if}}
-        </p>
+            </p>
+        {{/if}}
         {{#if killer.country}}
-        <p><b>Country:</b> {{killer.country}}</p>
+            <p><b>Country:</b> {{killer.country}}</p>
         {{/if}}
         {{#if killer.arrested}}
-        <p><b>Date of arrest:</b> {{killer.arrested}}</p>
+            <p><b>Date of arrest:</b> {{killer.arrested}}</p>
         {{/if}}
     </div>
 </div>

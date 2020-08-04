@@ -18,17 +18,6 @@ router.use((req, res, next) => {
     res.redirect('/login');
 });
 
-/* Add & Edit killers */
-
-/*router.get('/killers', (req, res, next) => {
-    Killer.find()
-        .then(allKillers => {
-            res.render('killers', { killers: allKillers });
-        })
-        .catch(error => {
-            console.log('Error:', error);
-        });
-});*/
 
 router.get('/add-killer', (req, res, next) => {
     res.render('private/add-killer');
@@ -37,10 +26,8 @@ router.get('/add-killer', (req, res, next) => {
 
 router.post('/add-killer', parser.single('photo'), (req, res, next) => {
     const { name, lastName, aka, gender, murderType } = req.body;
-
     let imgPath;
     if (req.file) imgPath = req.file.url;
-
     const userId = req.session.currentUser._id;
     const userInfo = { isAuthor: true };
     const newKiller = new Killer({ name, lastName, aka, gender, murderType, author: userId, image: imgPath });
@@ -70,12 +57,7 @@ router.post('/add-killer', parser.single('photo'), (req, res, next) => {
                 });
         })
         .catch((err) => {
-
         });
-
-
-
-
 });
 
 router.get('/edit-killer', (req, res, next) => {
@@ -90,13 +72,13 @@ router.get('/edit-killer', (req, res, next) => {
 });
 
 router.post('/edit-killer', (req, res, next) => {
+    const userId = req.session.currentUser._id
 
-    const userId = req.session.currentUser._id;
+    let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
+    yearsActive = yearsActive.split(', ')
 
     const author = userId;
 
-    let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
-    yearsActive = yearsActive.split(' ,');
     if (author == userId) {
         let editButton = document.querySelector('.edit-btn');
         editButton.classList.add('show-edit');
