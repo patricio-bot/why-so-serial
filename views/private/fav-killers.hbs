@@ -1,0 +1,7 @@
+<h1>My Favourite Killers</h1>
+{{#each user.faveKillers}}
+    <a href="/killers/{{this._id}}">
+        <img src="{{this.image}}" alt="">
+        <p>{{this.name}} {{this.lastName}}</p>
+    </a>
+{{/each}}

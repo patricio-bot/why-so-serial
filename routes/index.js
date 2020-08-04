@@ -15,22 +15,12 @@ router.get('/killers/alphabet/:letter', async (req, res, next) => {
     const killersAlphabetical = [];
 
     killers.map(killer => {
-<<<<<<< HEAD
       //console.log('Our killers: ', killer.lastName)
       if (killer.lastName) {
         if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
         killersAlphabetical.push(killer)
       }
       }
-=======
-      console.log('Our killers: ', killer.name, killer.lastName)
-      if (killer.lastName) {
-        if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
-          killersAlphabetical.push(killer);
-        }
-      }
-
->>>>>>> b97189bfcedefb42d3b228b6543498c59e89c0f0
     })
     res.render('killers', { killers: killersAlphabetical });
   }

@@ -75,15 +75,12 @@ router.post('/edit-killer', (req, res, next) => {
     const userId = req.session.currentUser._id
 
     let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
-    yearsActive = yearsActive.split(', ')
+    
+    console.log(yearsActive, typeof yearsActive)
+    yearsActive = yearsActive.split(/[ ,]+/).sort((a, b) => a - b);
 
-    const author = userId;
-
-    if (author == userId) {
-        let editButton = document.querySelector('.edit-btn');
-        editButton.classList.add('show-edit');
-
-    }
+    console.log(yearsActive)
+    
     Killer.update({ _id: req.query.killer_id },
         { $set: { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } }, { new: true }
     )
@@ -93,8 +90,38 @@ router.post('/edit-killer', (req, res, next) => {
         .catch((error) => {
             console.log(error);
         });
-
 });
+
+router.post('/fave-killer', (req, res, next) => {
+    const userId = req.session.currentUser._id;
+    Killer.findById(req.query.killer_id)
+        .then((killer) => {
+            User.findByIdAndUpdate(userId, { $push: { faveKillers: killer._id } }, { new: true })
+                .then((user) => {
+                    req.session.currentUser = user;
+                    res.redirect(`/private/profile/${userId}`);
+                })
+                .catch((err) => {
+                    next(err);
+                });
+        })
+        .catch(error =>
+            console.log(error));
+});
+
+router.post('/delete-killer', (req, res, next) => {
+    let killerId = req.params.killerId
+    const userId = req.session.currentUser._id
+
+    Killer.findByIdAndRemove({'_id': killerId})
+    .then(() => {
+        res.redirect(`/private/profile/${userId}`)
+    })
+        .catch((error) => {
+        console.log(error)
+        return res.status(404).render('not-found');
+    })
+})
 
 /* USER PROFILE */
 
@@ -108,8 +135,19 @@ router.get('/profile/:userId', (req, res, next) => {
         .catch(error => {
             console.log('error:', error);
         });
-});
+}); 
 
+router.get('/fav-killers/:userId', (req, res, next) => {
+    let userId = req.params.userId
+    User.findById(userId)
+        .populate("faveKillers")
+        .then((user) => {
+            res.render('private/fav-killers', {user})
+        })
+        .catch(error => {
+            console.log('error:', error);
+        });
+})
 
 router.get('/profile/:userId/edit', (req, res, next) => {
     const userId = req.session.currentUser._id
@@ -126,7 +164,8 @@ router.get('/profile/:userId/edit', (req, res, next) => {
 router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, next) => {
     const { name, email, password } = req.body;
     let userId = req.params.userId;
-    const image_url = req.file.secure_url;
+    let image_url;
+    if (req.file) image_url = req.file.secure_url;
 
     console.log(req.file)
 
