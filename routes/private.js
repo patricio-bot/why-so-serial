@@ -89,29 +89,72 @@ router.get('/edit-killer', (req, res, next) => {
 
 });
 
-router.post('/edit-killer', (req, res, next) => {
+router.post('/edit-killer', parser.single('photo'), (req, res, next) => {
 
     const userId = req.session.currentUser._id;
-
     const author = userId;
 
-    let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
-    yearsActive = yearsActive.split(' ,');
-    if (author == userId) {
-        let editButton = document.querySelector('.edit-btn');
-        editButton.classList.add('show-edit');
 
-    }
-    Killer.update({ _id: req.query.killer_id },
-        { $set: { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } }, { new: true }
-    )
+    let defaultKillerImg;
+    let imgPath = req.file ? req.file.url : defaultKillerImg;
+
+
+    Killer.findById(req.query.killer_id)
+        .then(theKillerProfile => {
+
+            defaultKillerImg = theKillerProfile.image;
+
+            let imgPath = req.file ? req.file.url : defaultKillerImg;
+
+            let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
+
+            let killerUpdated = { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books, image: imgPath };
+
+            Killer.update({ _id: req.query.killer_id }, killerUpdated)
+                .then(() => Killer.findById(req.query.killer_id))
+                .then(killerUpdated => {
+                    res.redirect(`/private/profile/${userId}`);
+                })
+                .catch(error =>
+                    console.log(error));
+
+        });
+
+
+
+
+
+});
+router.post('/fave-killer', (req, res, next) => {
+    const userId = req.session.currentUser._id;
+    Killer.findById(req.query.killer_id)
         .then((killer) => {
+            User.findByIdAndUpdate(userId, { $push: { faveKillers: killer._id } }, { new: true })
+                .then((user) => {
+                    req.session.currentUser = user;
+                    res.redirect(`/private/profile/${userId}`);
+                })
+                .catch((err) => {
+                    next(err);
+                });
+
+
+        })
+        .catch(error =>
+            console.log(error));
+});
+
+router.post('/delete-killer', (req, res, next) => {
+
+    const userId = req.session.currentUser._id;
+    Killer.findByIdAndRemove({ _id: req.query.killer_id })
+        .then(() => {
             res.redirect(`/private/profile/${userId}`);
         })
         .catch((error) => {
-            console.log(error);
+            console.log(error)
+            return res.status(404).render('not-found');
         });
-
 });
 
 /* USER PROFILE */
@@ -142,24 +185,30 @@ router.get('/profile/:userId/edit', (req, res, next) => {
 })
 
 router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, next) => {
-    const { name, email, password } = req.body;
+
     let userId = req.params.userId;
-    const image_url = req.file.secure_url;
 
-    console.log(req.file)
+    let previousUserImg;
 
-    User.findByIdAndUpdate(
-        { _id: userId },
-        { $set: { name, email, password, image: image_url } },
-        { new: true }
-    )
-        .then((user) => {
-            res.redirect(`/private/profile/${userId}`);
-        })
-        .catch((error) => {
-            console.log(error)
-            next(error)
+
+
+    User.findById(userId)
+        .then(theUserProfile => {
+            previousUserImg = theUserProfile.image;
+            let imgPath = req.file ? req.file.url : previousUserImg;
+
+            const { name, email } = req.body;
+
+            const userUpdated = { name, email, image: imgPath };
+
+            User.update({ _id: userId }, userUpdated)
+                .then(() => User.findById(userId))
+                .then(userUpdated => {
+
+                    res.redirect(`/private/profile/${userId}`);
+                })
+                .catch(error => console.log(error));
         });
-})
+});
 
 module.exports = router;

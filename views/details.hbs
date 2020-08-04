@@ -62,7 +62,7 @@
         {{/if}}
     </article>
     <article>
-        {{#if killer.weapons}}
+        {{#if killer.weapons.[0]}}
         <h3>Weapons Used:</h3>
         {{#if killer.weapons.[1]}}
         {{#each killer.weapons}}
@@ -106,5 +106,21 @@
 
 
 </form>
+{{#if killer.author}}
+{{#ifeqId killer.author currentUserInfo._id}}
 <a class="edit-btn" href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
+<form action="/private/delete-killer?killer_id={{killer._id}}" method="post">
+    <button type="submit">Delete</button>
+</form>
+
+{{/ifeqId}}
+{{#ifneqId killer.author currentUserInfo._id}}
+<p>you cannot Delete or Edit a Killer that you have not created.</p>
+{{/ifneqId}}
+{{/if}}
+<form action="/private/fave-killer?killer_id={{killer._id}}" method="post">
+    <button type="submit">Fave</button>
+</form>
+
+
 <a href="/killers">Back to Serial Killers</a>
