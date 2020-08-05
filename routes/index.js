@@ -9,43 +9,33 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/killers/alphabet/:letter', async (req, res, next) => {
-  let letter = req.params.letter
+  let letter = req.params.letter;
   try {
     let killers = await Killer.find();
     const killersAlphabetical = [];
-
     killers.map(killer => {
-<<<<<<< HEAD
-      //console.log('Our killers: ', killer.lastName)
-      if (killer.lastName) {
-        if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
-        killersAlphabetical.push(killer)
-      }
-      }
-=======
-      console.log('Our killers: ', killer.name, killer.lastName)
+      console.log('Our killers: ', killer.name, killer.lastName);
       if (killer.lastName) {
         if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
           killersAlphabetical.push(killer);
         }
       }
-
->>>>>>> b97189bfcedefb42d3b228b6543498c59e89c0f0
-    })
+    });
     res.render('killers', { killers: killersAlphabetical });
   }
   catch (error) {
     console.log('Error while getting killers from DB: ', error);
   }
-})
+});
 
 router.get('/killers/search/:zodiac', (req, res, next) => {
   let zodiac = req.params.zodiac;
 
+  console.log(zodiac);
   Killer.find({ zodiacSign: zodiac })
     .then((killers) => {
-      console.log(killers)
-      res.render('killers', { killers })
+      console.log(killers);
+      res.render('killers', { killers });
     })
     .catch((err) => {
       next(err);
@@ -72,10 +62,9 @@ router.get('/killers/:killerId', (req, res, next) => {
       if (!killer) {
         return res.status(404).render('not-found');
       }
-      res.render("details", { killer })
+      res.render("details", { killer });
     })
     .catch(next);
 });
-
 
 module.exports = router;
