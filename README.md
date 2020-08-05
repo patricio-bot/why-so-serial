@@ -109,8 +109,9 @@ Comment model
 
 ## Backlog
 
-- Let the user like and add to favorites the files they're most interested in.
-- Let the user have a particular view only of the killer files he has created.
+- Insert a Cluedo game so the user can solve crime related riddles and catch the killer.
+- Edit password with email validation.
+- Create a public API with the db we made.
 
 
 
@@ -120,7 +121,7 @@ Comment model
 
 [Repository Link](https://github.com/MartaJank/why-so-serial-m2-project)
 
-[Deploy Link]()
+[Deploy Link](https://why-so-serial.herokuapp.com/)
 
 
 
@@ -132,5 +133,5 @@ Comment model
 
 #### Slides
 
-[Our amazing presentation!]()​ 
+[Our amazing presentation!](https://docs.google.com/presentation/d/1ttOryOclzhJ0yiJgGZhi4_01DrFzLpvSLqSiYrLTAB0/edit?usp=sharing) 
 
