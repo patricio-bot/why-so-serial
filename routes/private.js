@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const saltRound = 10;
 const parser = require('./../config/cloudinary');
 
-const Killer = require('../models/Killer');
+const Killer = require('../models/killer');
 const User = require('../models/User');
 
 
@@ -76,7 +76,7 @@ router.post('/edit-killer', parser.single('photo'), (req, res, next) => {
     const userId = req.session.currentUser._id
 
     let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
-    
+
     console.log(yearsActive, typeof yearsActive)
     yearsActive = yearsActive.split(/[ ,]+/).sort((a, b) => a - b);
 
@@ -146,14 +146,14 @@ router.post('/delete-killer', (req, res, next) => {
     let killerId = req.params.killerId
     const userId = req.session.currentUser._id
 
-    Killer.findByIdAndRemove({'_id': killerId})
-    .then(() => {
-        res.redirect(`/private/profile/${userId}`)
-    })
+    Killer.findByIdAndRemove({ '_id': killerId })
+        .then(() => {
+            res.redirect(`/private/profile/${userId}`)
+        })
         .catch((error) => {
-        console.log(error)
-        return res.status(404).render('not-found');
-    })
+            console.log(error)
+            return res.status(404).render('not-found');
+        })
 })
 
 /* USER PROFILE */
@@ -168,14 +168,14 @@ router.get('/profile/:userId', (req, res, next) => {
         .catch(error => {
             console.log('error:', error);
         });
-}); 
+});
 
 router.get('/fav-killers/:userId', (req, res, next) => {
     let userId = req.params.userId
     User.findById(userId)
         .populate("faveKillers")
         .then((user) => {
-            res.render('private/fav-killers', {user})
+            res.render('private/fav-killers', { user })
         })
         .catch(error => {
             console.log('error:', error);

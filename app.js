@@ -24,7 +24,7 @@ const authRouter = require('./routes/auth');
 var app = express();
 
 mongoose
-  .connect('mongodb://localhost/serial-killer', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -54,7 +54,7 @@ app.use(session({
   cookie: { maxAge: 600000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60
+    //ttl: 24 * 60 * 60
   })
 }));
 
