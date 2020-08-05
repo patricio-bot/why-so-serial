@@ -15,8 +15,6 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const registerHelpers = require('./loaders/hbs');
 
-const registerHelpers = require('./loaders/hbs');
-
 var privateRouter = require('./routes/private');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -53,7 +51,7 @@ app.use(session({
   secret: 'never walk alone again',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 600000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60
@@ -69,9 +67,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-// HBS helpers
-registerHelpers(hbs);
-
 
 // HBS helpers
 registerHelpers(hbs);
