@@ -15,7 +15,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const registerHelpers = require('./loaders/hbs');
 
-const registerHelpers = require('./loaders/hbs');
+
 
 var privateRouter = require('./routes/private');
 var indexRouter = require('./routes/index');
@@ -26,7 +26,7 @@ const authRouter = require('./routes/auth');
 var app = express();
 
 mongoose
-  .connect('mongodb://localhost/serial-killer', {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -53,10 +53,10 @@ app.use(session({
   secret: 'never walk alone again',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 600000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60
+    //ttl: 24 * 60 * 60
   })
 }));
 
