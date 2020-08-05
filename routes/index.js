@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const Killer = require('../models/Killer');
+const Killer = require('../models/killer');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -17,8 +17,8 @@ router.get('/killers/alphabet/:letter', async (req, res, next) => {
       //console.log('Our killers: ', killer.lastName)
       if (killer.lastName) {
         if (killer.lastName.startsWith(letter.toUpperCase()) || killer.lastName.startsWith(letter.toLowerCase())) {
-        killersAlphabetical.push(killer)
-      }
+          killersAlphabetical.push(killer)
+        }
       }
     })
     res.render('killers', { killers: killersAlphabetical });
