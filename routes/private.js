@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+const bcrypt = require('bcrypt');
+const saltRound = 10;
 const parser = require('./../config/cloudinary');
 
 const Killer = require('../models/Killer');
@@ -197,9 +198,10 @@ router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, nex
             previousUserImg = theUserProfile.image;
             let imgPath = req.file ? req.file.url : previousUserImg;
 
-            const { name, email } = req.body;
-
-            const userUpdated = { name, email, image: imgPath };
+            const { name, email, password } = req.body;
+            const salt = bcrypt.genSaltSync(saltRound);
+            const hashPassword = bcrypt.hashSync(password, salt);
+            const userUpdated = { name, email, image: imgPath, password: hashPassword };
 
             User.update({ _id: userId }, userUpdated)
                 .then(() => User.findById(userId))
