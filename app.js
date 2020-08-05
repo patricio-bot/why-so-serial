@@ -13,6 +13,7 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const registerHelpers = require('./loaders/hbs');
 
 const registerHelpers = require('./loaders/hbs');
 
@@ -68,6 +69,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+// HBS helpers
+registerHelpers(hbs);
+
 
 // HBS helpers
 registerHelpers(hbs);

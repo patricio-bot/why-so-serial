@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+const bcrypt = require('bcrypt');
+const saltRound = 10;
 const parser = require('./../config/cloudinary');
 
 const Killer = require('../models/Killer');
@@ -71,7 +72,7 @@ router.get('/edit-killer', (req, res, next) => {
 
 });
 
-router.post('/edit-killer', (req, res, next) => {
+router.post('/edit-killer', parser.single('photo'), (req, res, next) => {
     const userId = req.session.currentUser._id
 
     let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
@@ -79,18 +80,35 @@ router.post('/edit-killer', (req, res, next) => {
     console.log(yearsActive, typeof yearsActive)
     yearsActive = yearsActive.split(/[ ,]+/).sort((a, b) => a - b);
 
-    console.log(yearsActive)
-    
-    Killer.update({ _id: req.query.killer_id },
-        { $set: { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } }, { new: true }
-    )
-        .then((killer) => {
-            res.redirect(`/private/profile/${userId}`);
-        })
-        .catch((error) => {
-            console.log(error);
+    const author = userId;
+
+
+    let defaultKillerImg;
+    let imgPath = req.file ? req.file.url : defaultKillerImg;
+
+
+    Killer.findById(req.query.killer_id)
+        .then(theKillerProfile => {
+
+            defaultKillerImg = theKillerProfile.image;
+
+            let imgPath = req.file ? req.file.url : defaultKillerImg;
+
+            let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
+
+            let killerUpdated = { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books, image: imgPath };
+
+            Killer.update({ _id: req.query.killer_id }, killerUpdated)
+                .then(() => Killer.findById(req.query.killer_id))
+                .then(killerUpdated => {
+                    res.redirect(`/private/profile/${userId}`);
+                })
+                .catch(error =>
+                    console.log(error));
+
         });
 });
+
 
 router.post('/fave-killer', (req, res, next) => {
     const userId = req.session.currentUser._id;
@@ -104,9 +122,24 @@ router.post('/fave-killer', (req, res, next) => {
                 .catch((err) => {
                     next(err);
                 });
+
+
         })
         .catch(error =>
             console.log(error));
+});
+
+router.post('/delete-killer', (req, res, next) => {
+
+    const userId = req.session.currentUser._id;
+    Killer.findByIdAndRemove({ _id: req.query.killer_id })
+        .then(() => {
+            res.redirect(`/private/profile/${userId}`);
+        })
+        .catch((error) => {
+            console.log(error)
+            return res.status(404).render('not-found');
+        });
 });
 
 router.post('/delete-killer', (req, res, next) => {
@@ -162,25 +195,33 @@ router.get('/profile/:userId/edit', (req, res, next) => {
 })
 
 router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, next) => {
-    const { name, email, password } = req.body;
+
     let userId = req.params.userId;
     let image_url;
     if (req.file) image_url = req.file.secure_url;
 
-    console.log(req.file)
+    let previousUserImg;
 
-    User.findByIdAndUpdate(
-        { _id: userId },
-        { $set: { name, email, password, image: image_url } },
-        { new: true }
-    )
-        .then((user) => {
-            res.redirect(`/private/profile/${userId}`);
-        })
-        .catch((error) => {
-            console.log(error)
-            next(error)
+
+
+    User.findById(userId)
+        .then(theUserProfile => {
+            previousUserImg = theUserProfile.image;
+            let imgPath = req.file ? req.file.url : previousUserImg;
+
+            const { name, email, password } = req.body;
+            const salt = bcrypt.genSaltSync(saltRound);
+            const hashPassword = bcrypt.hashSync(password, salt);
+            const userUpdated = { name, email, image: imgPath, password: hashPassword };
+
+            User.update({ _id: userId }, userUpdated)
+                .then(() => User.findById(userId))
+                .then(userUpdated => {
+
+                    res.redirect(`/private/profile/${userId}`);
+                })
+                .catch(error => console.log(error));
         });
-})
+});
 
 module.exports = router;

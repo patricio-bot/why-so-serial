@@ -1,20 +1,37 @@
-<article>
-    <img src="{{user.image}}" alt="user image">
-    <p><b>Name:</b> {{user.name}}</p>
-    <a href="/private/profile/{{user._id}}/edit">Edit</a>
-</article>
-<article>
-{{#if user.faveKillers}}
-    <a href="/private/fav-killers/{{user._id}}">Fav</a>
-{{/if}}
-{{#if user.killersCreated}}
-    <h2>My Killers:</h2>
-    {{#each user.killersCreated}}
-        <a href="/killers/{{this._id}}">
-            <img src="{{this.image}}" alt="">
-            <p>{{this.name}} {{this.lastName}}</p>
-        </a>
-    {{/each}}
-{{/if}}
-</article>
+<div class="wrapper">
+    <div class="main">
+        <article>
+            <img src="{{user.image}}" alt="user image">
+            <p><b>Name:</b> {{user.name}}</p>
+            <a href="/private/profile/{{user._id}}/edit">Edit</a>
+        </article>
+        <article>
+        {{#if user.faveKillers}}
+            <a href="/private/fav-killers/{{user._id}}">Fav</a>
+        {{/if}}
+        {{#if user.killersCreated}}
+            <h2>My Killers:</h2>
+            {{#each user.killersCreated}}
+                <a href="/killers/{{this._id}}">
+                    <img src="{{this.image}}" alt="">
+                    <p>{{this.name}} {{this.lastName}}</p>
+                </a>
+            {{/each}}
+        {{/if}}
+        </article>
+    </div>
+</div>
 
+<footer class="footer">
+    <ul class="footer-links">
+        <a href="">
+            <li>Items</li>
+        </a>
+        <a href="">
+            <li>Items</li>
+        </a>
+        <a href="">
+            <li>Items</li>
+        </a>
+    </ul>
+</footer>

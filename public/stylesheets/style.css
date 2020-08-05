@@ -1,19 +1,177 @@
-body {
-  padding: 50px;
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  --red-block: #8b0a0a;
+  --links: #ef9d9d;
+  --dirty-white: #efeeec;
+  --pink-btns: #c55c68;
+}
+
+img {
+  max-width: 100%;
+  line-height: 1;
+}
+
+body {
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 a {
+  text-decoration: none;
   color: #00B7FF;
 }
 
-
-
-/* .edit-btn {
-  display: none;
-
-} */
-
-.show-edit {
-  display: block;
+h1 {
+  font-size: 3.2rem;
 }
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 900;
+}
+
+p {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+
+/*************************** nav ***************************/
+.nav {
+  background-color: var(--red-block);
+}
+
+.nav-menu a {
+  color: var(--links);
+}
+
+/******************************* wrappers *******************/
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+
+/************************* forms *****************************/
+.form-wrapper {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-bg {
+  flex-grow: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-title {
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid black;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1.8rem;
+  font-size: 2rem;
+}
+
+.form-label {
+  align-self: flex-start;
+  font-size: 2rem;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border: 1px solid var(--pink-btns);
+  box-shadow: 0px 10px 5px 0px rgba(139, 10, 10, 0.365);
+}
+
+.form-input::-webkit-input-placeholder {
+
+  margin-left: 2rem;
+  font-size: 1.6rem;
+}
+
+.form-input:placeholder-shown+.form-label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem);
+  transition: all 0.3s ease;
+}
+
+/************************* footer ************************/
+.footer {
+  background-color: var(--red-block);
+}
+
+.footer-links a {
+  color: var(--links);
+}
+
+/******************************************************************************************************** media queries **************************************************************/
+
+
+@media screen and (min-width:600px) {}
+
+@media screen and (min-width:900px) {}
+
+@media screen and (min-width:1200px) {}
+
+
+@media screen and (min-width:1800px) {}
