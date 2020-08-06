@@ -8,8 +8,6 @@ const Killer = require('../models/killer');
 const User = require('../models/User');
 
 
-
-
 /* Session Middleware */
 router.use((req, res, next) => {
     if (req.session.currentUser) {
@@ -141,8 +139,6 @@ router.post('/delete-killer', (req, res, next) => {
             return res.status(404).render('not-found');
         });
 });
-
-
 
 /* USER PROFILE */
 

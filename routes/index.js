@@ -55,6 +55,7 @@ router.post('/reviews/add', (req, res, next) => {
       next(err);
     });
 });
+
 router.get('/killers/:killerId', (req, res, next) => {
   let killerId = req.params.killerId;
   Killer.findOne({ '_id': killerId })
