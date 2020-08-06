@@ -1,6 +1,6 @@
 # Why so Serial?
 
-![logo](/public/images/Untitled.png)
+![logo](/public/images/Logo.png)
 
 ## Description
 
