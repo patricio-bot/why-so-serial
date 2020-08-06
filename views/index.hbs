@@ -7,75 +7,77 @@
       <ul class="hs">
         <li class="item">
             <img class="hs-image" src="../images/maglass.png" alt="magnifying glass">
-            <h5>Search for Killers</h5>
+            <h5 class="card-title">Search for Killers</h5>
             <p class="card-text">Below, you'll find two buttons that will help you get filtered information easily due to the amount of files created. You can filter by the first letter of killer's last name or by zodiac sign!</p>
         </li>
         <li class="item start">
             <img class="hs-image" src="../images/folder.png" alt="folder">
-            <h5>Create your own Killer files</h5>
+            <h5 class="card-title">Create your own Killer files</h5>
             <p class="card-text">If you can't find the files you're looking for, you can always create your own. Be a detective, investigate, and add the data.</p>
         </li>
         <li class="item">
             <img class="hs-image" src="../images/profile.png" alt="">
-            <h5>Sign Up!</h5>
+            <h5 class="card-title">Sign Up!</h5>
             <p class="card-text">When you create your profile you can access additional features such as adding killers, leave comments or add to favorites! The more the better!</p>
         </li>
         <li class="item last">
             <img class="hs-image" src="../images/heart.png" alt="">
-            <h5>Favorites</h5>
+            <h5 class="card-title">Favorites</h5>
             <p class="card-text">In your profile you have a button that takes you to the killer files you marked as favorites so you can access them easily anytime!</p>
         </li>
       </ul>
     </div>
-    <article class="main-btns">
-        <div>
-            <button class="main-btn" type='button' onclick="toggleLetter()">A - Z</button>
-            <div id='alpha' style='display: none'>
-                <form action="/killers/alphabet/a"><button class="letter-btn"><img src="../images/a.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/b"><button class="letter-btn"><img src="../images/b.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/c"><button class="letter-btn"><img src="../images/c.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/d"><button class="letter-btn"><img src="../images/d.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/e"><button class="letter-btn"><img src="../images/e.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/f"><button class="letter-btn"><img src="../images/f.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/g"><button class="letter-btn"><img src="../images/g.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/h"><button class="letter-btn"><img src="../images/h.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/i"><button class="letter-btn"><img src="../images/i.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/j"><button class="letter-btn"><img src="../images/j.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/k"><button class="letter-btn"><img src="../images/k.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/l"><button class="letter-btn"><img src="../images/l.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/m"><button class="letter-btn"><img src="../images/m.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/n"><button class="letter-btn"><img src="../images/n.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/o"><button class="letter-btn"><img src="../images/o.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/p"><button class="letter-btn"><img src="../images/p.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/q"><button class="letter-btn"><img src="../images/q.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/r"><button class="letter-btn"><img src="../images/r.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/s"><button class="letter-btn"><img src="../images/s.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/t"><button class="letter-btn"><img src="../images/t.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/u"><button class="letter-btn"><img src="../images/u.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/v"><button class="letter-btn"><img src="../images/v.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/w"><button class="letter-btn"><img src="../images/w.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/x"><button class="letter-btn"><img src="../images/x.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/y"><button class="letter-btn"><img src="../images/y.jpg" alt=""></button></form>
-                <form action="/killers/alphabet/z"><button class="letter-btn"><img src="../images/z.jpg" alt=""></button></form>
-            </div>
+    <article>
+        <div class="main-btns">
+            <button class="main-btn main-alpha" type='button' onclick="toggleLetter()">A - Z</button>
+            <button class="main-btn main-zodiac" type='button' onclick="toggleText()">Zodiac Sign</button>    
         </div>
-        <div>
-            <button class="main-btn" type='button' onclick="toggleText()">Zodiac Sign</button>
-            <div id='zodiac' style='display: none'>
-                <form action="/killers/search/Aries"><button class="zodiac-btn"><img src="../images/aries.png" alt=""></button></form>
-                <form action="/killers/search/Taurus"><button class="zodiac-btn"><img src="../images/taurus.png" alt=""></button></form>
-                <form action="/killers/search/Gemini"><button class="zodiac-btn"><img src="../images/gemini.png" alt=""></button></form>
-                <form action="/killers/search/Cancer"><button class="zodiac-btn"><img src="../images/cancer.png" alt=""></button></form>
-                <form action="/killers/search/Leo"><button class="zodiac-btn"><img src="../images/leo.png" alt=""></button></form>
-                <form action="/killers/search/Virgo"><button class="zodiac-btn"><img src="../images/virgo.png" alt=""></button></form>
-                <form action="/killers/search/Libra"><button class="zodiac-btn"><img src="../images/libra.png" alt=""></button></form>
-                <form action="/killers/search/Scorpio"><button class="zodiac-btn"><img src="../images/scorpio.png" alt=""></button></form>
-                <form action="/killers/search/Sagittarius"><button class="zodiac-btn"><img src="../images/sagittarius.png" alt=""></button></form>
-                <form action="/killers/search/Capricorn"><button class="zodiac-btn"><img src="../images/capricorn.png" alt=""></button></form>
-                <form action="/killers/search/Aquarius"><button class="zodiac-btn"><img src="../images/aquarius.png" alt=""></button></form>
-                <form action="/killers/search/Pisces"><button class="zodiac-btn"><img src="../images/pisces.png" alt=""></button></form>
+        <div id='alpha'>
+                <div class="alpha-btns">
+                    <form action="/killers/alphabet/a"><button class="letter-btn"><img src="../images/a.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/b"><button class="letter-btn"><img src="../images/b.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/c"><button class="letter-btn"><img src="../images/c.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/d"><button class="letter-btn"><img src="../images/d.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/e"><button class="letter-btn"><img src="../images/e.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/f"><button class="letter-btn"><img src="../images/f.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/g"><button class="letter-btn"><img src="../images/g.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/h"><button class="letter-btn"><img src="../images/h.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/i"><button class="letter-btn"><img src="../images/i.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/j"><button class="letter-btn"><img src="../images/j.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/k"><button class="letter-btn"><img src="../images/k.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/l"><button class="letter-btn"><img src="../images/l.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/m"><button class="letter-btn"><img src="../images/m.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/n"><button class="letter-btn"><img src="../images/n.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/o"><button class="letter-btn"><img src="../images/o.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/p"><button class="letter-btn"><img src="../images/p.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/q"><button class="letter-btn"><img src="../images/q.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/r"><button class="letter-btn"><img src="../images/r.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/s"><button class="letter-btn"><img src="../images/s.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/t"><button class="letter-btn"><img src="../images/t.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/u"><button class="letter-btn"><img src="../images/u.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/v"><button class="letter-btn"><img src="../images/v.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/w"><button class="letter-btn"><img src="../images/w.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/x"><button class="letter-btn"><img src="../images/x.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/y"><button class="letter-btn"><img src="../images/y.jpg" alt=""></button></form>
+                    <form action="/killers/alphabet/z"><button class="letter-btn"><img src="../images/z.jpg" alt=""></button></form>
+                </div>
             </div>
-        </div>
+        <div id='zodiac'>
+                <div class="zodiac-btns">
+                    <form action="/killers/search/Aries"><button class="zodiac-btn"><img src="../images/aries.png" alt=""></button></form>
+                    <form action="/killers/search/Taurus"><button class="zodiac-btn"><img src="../images/taurus.png" alt=""></button></form>
+                    <form action="/killers/search/Gemini"><button class="zodiac-btn"><img src="../images/gemini.png" alt=""></button></form>
+                    <form action="/killers/search/Cancer"><button class="zodiac-btn"><img src="../images/cancer.png" alt=""></button></form>
+                    <form action="/killers/search/Leo"><button class="zodiac-btn"><img src="../images/leo.png" alt=""></button></form>
+                    <form action="/killers/search/Virgo"><button class="zodiac-btn"><img src="../images/virgo.png" alt=""></button></form>
+                    <form action="/killers/search/Libra"><button class="zodiac-btn"><img src="../images/libra.png" alt=""></button></form>
+                    <form action="/killers/search/Scorpio"><button class="zodiac-btn"><img src="../images/scorpio.png" alt=""></button></form>
+                    <form action="/killers/search/Sagittarius"><button class="zodiac-btn"><img src="../images/sagittarius.png" alt=""></button></form>
+                    <form action="/killers/search/Capricorn"><button class="zodiac-btn"><img src="../images/capricorn.png" alt=""></button></form>
+                    <form action="/killers/search/Aquarius"><button class="zodiac-btn"><img src="../images/aquarius.png" alt=""></button></form>
+                    <form action="/killers/search/Pisces"><button class="zodiac-btn"><img src="../images/pisces.png" alt=""></button></form>
+                </div>
+            </div>
     </article>
 </main>
 <footer class="footer">

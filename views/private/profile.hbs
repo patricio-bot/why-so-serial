@@ -1,13 +1,15 @@
 <div class="wrapper">
     <div class="main">
-        <article>
-            <img src="{{user.image}}" alt="user image">
-            <p><b>Name:</b> {{user.name}}</p>
-            <a href="/private/profile/{{user._id}}/edit">Edit</a>
+        <article class="profile-main">
+            <div class="user-pic-div">
+                <img src="{{user.image}}" alt="user image" class="user-picture">
+            </div>
+            <p><b class="bold-item">Name:</b> {{user.name}}</p>
+            <a href="/private/profile/{{user._id}}/edit"><button class="btn btn-after">Edit</button></a>
         </article>
-        <article>
+        <article class="profile-main">
         {{#if user.faveKillers}}
-            <a href="/private/fav-killers/{{user._id}}">Fav</a>
+            <a href="/private/fav-killers/{{user._id}}"><button class="btn btn-after">Favorite Killers</button></a>
         {{/if}}
         {{#if user.killersCreated}}
             <h2>My Killers:</h2>

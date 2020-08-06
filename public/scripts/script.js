@@ -1,17 +1,14 @@
-function toggleLetter() {
-    var text = document.getElementById("alpha");
-    if (text.style.display === "none") {
-      text.style.display = "block";
-    } else {
-      text.style.display = "none";
-    }
-}
+var zodiacBtn = document.querySelector(".main-zodiac")
+var zbuttons = document.querySelector(".zodiac-btns")
+var alphaBtn = document.querySelector(".main-alpha")
+var abuttons = document.querySelector(".alpha-btns")
 
-function toggleText() {
-    var text = document.getElementById("zodiac");
-    if (text.style.display === "none") {
-      text.style.display = "block";
-    } else {
-      text.style.display = "none";
-    }
-}
+zodiacBtn.addEventListener("click", () => {
+  zbuttons.classList.toggle("show-list")
+  abuttons.classList.remove("show-list")
+})
+
+alphaBtn.addEventListener("click", () => {
+  abuttons.classList.toggle("show-list")
+  zbuttons.classList.remove("show-list")
+})
