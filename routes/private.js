@@ -142,19 +142,7 @@ router.post('/delete-killer', (req, res, next) => {
         });
 });
 
-router.post('/delete-killer', (req, res, next) => {
-    let killerId = req.params.killerId
-    const userId = req.session.currentUser._id
 
-    Killer.findByIdAndRemove({ '_id': killerId })
-        .then(() => {
-            res.redirect(`/private/profile/${userId}`)
-        })
-        .catch((error) => {
-            console.log(error)
-            return res.status(404).render('not-found');
-        })
-})
 
 /* USER PROFILE */
 

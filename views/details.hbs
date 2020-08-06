@@ -127,7 +127,7 @@
         {{#ifeqId killer.author currentUserInfo._id}}
         <a class="edit-btn" href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
         <form action="/private/delete-killer?killer_id={{killer._id}}" method="post">
-            <button type="submit">Delete</button>
+            <button class="btn btn-after" type="submit">Delete</button>
         </form>
 
         {{/ifeqId}}
