@@ -14,30 +14,17 @@
             
         </article>
         <article class="profile-main-ifs">
-        
         {{#if user.killersCreated}}
             <h2>My Killers:</h2>
             {{#each user.killersCreated}}
-                <a href="/killers/{{this._id}}">
-                    <img src="{{this.image}}" alt="">
-                    <p>{{this.name}} {{this.lastName}}</p>
-                </a>
+            <a href="/killers/{{this._id}}">
+                <img src="{{this.image}}" alt="">
+                <p>{{this.name}} {{this.lastName}}</p>
+            </a>
             {{/each}}
-        {{/if}}
+            {{/if}}
         </article>
     </div>
 </div>
 
-<footer class="footer">
-    <ul class="footer-links">
-        <a href="">
-            <li>Items</li>
-        </a>
-        <a href="">
-            <li>Items</li>
-        </a>
-        <a href="">
-            <li>Items</li>
-        </a>
-    </ul>
-</footer>
+{{> footerpartial this}}

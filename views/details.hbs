@@ -1,48 +1,57 @@
 <div class="wrapper">
     <div class="main">
 
-        <div>
-
-            <div>
-                <img src="{{killer.image}}" alt="">
-                {{#if killer.numberOfVictimsConfirmed}}
-                <p><b>Number of victims confirmed:</b> {{killer.numberOfVictimsConfirmed}}</p>
-                {{/if}}
-                {{#if killer.numberOfVictimsPossible}}
-                <p><b>Number of victims possible:</b> {{killer.numberOfVictimsPossible}}</p>
-                {{/if}}
-            </div>
-            <div>
-                <h1>{{killer.name}} {{killer.lastName}}</h1>
-                {{#if killer.aka}}
-                <p><b>A.K.A.:</b> {{killer.aka}}</p>
-                {{/if}}
-                {{#if killer.birthDate}}
-                <p><b>Date of Birth:</b> {{killer.birthDate}}</p>
-                {{/if}}
-                {{#if killer.zodiacSign}}
-                <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
-                {{/if}}
-                {{#if killer.yearsActive}}
-                <p><b>Years Active:</b>
-                    {{#if killer.yearsActive.[1]}}
-                    {{#each killer.yearsActive}}
-                    {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
-                    {{/each}}
-                    {{else}}
-                    {{killer.yearsActive}}
+        <div class="killer-box-1">
+            <div class="killer-box-intro">
+                <div class="killer-box-detail">
+                    <div class="killer-box-detail-1">
+                        <div class="killer-box-img">
+                            <div class="killer-fake-shadow"></div>
+                            <img src="{{killer.image}}" alt="">
+                        </div>
+                        <div class="victims">
+                            {{#if killer.numberOfVictimsConfirmed}}
+                            <p><b>Number of victims confirmed:</b> {{killer.numberOfVictimsConfirmed}}</p>
+                            {{/if}}
+                            {{#if killer.numberOfVictimsPossible}}
+                            <p><b>Number of victims possible:</b> {{killer.numberOfVictimsPossible}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                <div class="killer-box-detail killer-box-margin">
+                    <h1>{{killer.name}} {{killer.lastName}}</h1>
+                    {{#if killer.aka}}
+                    <p><b>A.K.A.:</b> {{killer.aka}}</p>
                     {{/if}}
+                    {{#if killer.birthDate}}
+                    <p><b>Date of Birth:</b> {{killer.birthDate}}</p>
                     {{/if}}
-                </p>
-                {{#if killer.country}}
-                <p><b>Country:</b> {{killer.country}}</p>
-                {{/if}}
-                {{#if killer.arrested}}
-                <p><b>Date of arrest:</b> {{killer.arrested}}</p>
-                {{/if}}
+                    {{#if killer.zodiacSign}}
+                    <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
+                    {{/if}}
+                    {{#if killer.yearsActive}}
+                    <p><b>Years Active:</b>
+                        {{#if killer.yearsActive.[1]}}
+                        {{#each killer.yearsActive}}
+                        {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
+                        {{/each}}
+                        {{else}}
+                        {{killer.yearsActive}}
+                        {{/if}}
+                        {{/if}}
+                    </p>
+                    {{#if killer.country}}
+                    <p><b>Country:</b> {{killer.country}}</p>
+                    {{/if}}
+                    {{#if killer.arrested}}
+                    <p><b>Date of arrest:</b> {{killer.arrested}}</p>
+                    {{/if}}
+                </div>
             </div>
         </div>
-        <div>
+
+        <div class="killer-box">
             <article>
                 {{#if killer.description}}
                 <h3>Description:</h3>
@@ -86,36 +95,39 @@
                 {{/if}}
             </article>
         </div>
-        <h2>Reviews</h2>
-        {{#each killer.reviews}}
-        <div class="review-item">
-            <p>{{this.comments}}</p>
-            <span>{{this.user}}</span>
-        </div>
-        {{/each}}
-        <p>Add A Comment</p>
-        <form class="form" action="/reviews/add?killer_id={{killer._id}}" method="post">
+        <div class="reviews-container">
+            <h2>Reviews</h2>
+            {{#each killer.reviews}}
+            <div class="review-item">
+                <p>{{this.comments}}</p>
+                <span>{{this.user}}</span>
+            </div>
+            {{/each}}
+            <p>Add A Comment</p>
 
-            <div class="form-group">
-                <input class="form-input" type="text" name="user" id="user-input" placeholder="User">
-                <label class="form-label" for="name-input">User Name</label>
-            </div>
-            <div class="form-group">
-                <textarea class="form-input" name="comments" id="comments-input" placeholder="Comments"></textarea>
-                <label class="form-label" for="comments-input">Comments</label>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn">Add</button>
-            </div>
-        </form>
-        <form action="/private/fave-killer?killer_id={{killer._id}}" method="post">
-            <button type="submit">Fave</button>
-        </form>
+            <form class="form" action="/reviews/add?killer_id={{killer._id}}" method="post">
+
+                <div class="form-group">
+                    <input class="form-input" type="text" name="user" id="user-input" placeholder="Username">
+                    <label class="form-label" for="name-input">Username</label>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input" name="comments" id="comments-input" placeholder="Comments"></textarea>
+                    <label class="form-label" for="comments-input">Comments</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-after">Add</button>
+                </div>
+            </form>
+            <form class="form-fave" action="/private/fave-killer?killer_id={{killer._id}}" method="post">
+                <button class="btn btn-after" type="submit">Fave</button>
+            </form>
+        </div>
         {{#if killer.author}}
         {{#ifeqId killer.author currentUserInfo._id}}
         <a class="edit-btn" href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
         <form action="/private/delete-killer?killer_id={{killer._id}}" method="post">
-            <button type="submit">Delete</button>
+            <button class="btn btn-after" type="submit">Delete</button>
         </form>
 
         {{/ifeqId}}
@@ -123,19 +135,8 @@
         <p>you cannot Delete or Edit a Killer that you have not created.</p>
         {{/ifneqId}}
         {{/if}}
-        <a href="/">Back</a>
+        <div class="back-link"><a href="/"><button class="btn btn-after"> Back</button></a></div>
+
     </div>
 </div>
-<footer class="footer">
-    <ul class="footer-links">
-        <a href="">
-            <li>Items</li>
-        </a>
-        <a href="">
-            <li>Items</li>
-        </a>
-        <a href="">
-            <li>Items</li>
-        </a>
-    </ul>
-</footer>
+{{> footerpartial this}}

@@ -24,14 +24,14 @@ router.get('/add-killer', (req, res, next) => {
 
 
 router.post('/add-killer', parser.single('photo'), (req, res, next) => {
-    const { name, lastName, aka, gender, murderType } = req.body;
+    const { name, lastName, aka, gender, murderType, birthDate, zodiacSign } = req.body;
     let imgPath;
     if (req.file) imgPath = req.file.url;
     const userId = req.session.currentUser._id;
     const userInfo = { isAuthor: true };
-    const newKiller = new Killer({ name, lastName, aka, gender, murderType, author: userId, image: imgPath });
-    if (name === '' || lastName === '' || murderType === '') {
-        res.render('private/add-killer', { errorMessage: 'The fields: author, name, last name and murder type are required' });
+    const newKiller = new Killer({ name, lastName, aka, gender, murderType, birthDate, zodiacSign, author: userId, image: imgPath });
+    if (name === '' || lastName === '' || murderType === '' || aka === '' || gender === '' || birthDate === '' || zodiacSign === '') {
+        res.render('private/add-killer', { errorMessage: 'The fields: name, last name, murder type, birth date, zodiac sign, aka and gender are required' });
         return;
     }
     Killer.findOne({ lastName })
@@ -182,7 +182,7 @@ router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, nex
 
     let userId = req.params.userId;
     let image_url;
-    if (req.file) image_url = req.file.secure_url;
+    if (req.file) image_url = req.file.url;
 
     let previousUserImg;
 

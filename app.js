@@ -68,8 +68,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// HBS helpers
-registerHelpers(hbs);
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.use('/private', privateRouter);
 app.use('/', indexRouter);
