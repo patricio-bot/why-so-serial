@@ -240,8 +240,13 @@ ul {
   padding: 2rem;
 }
 
-.bold-item {
-  font-weight: 600;
+.profile-main-ifs {
+  padding: 2rem;
+}
+
+.user-name{
+  font-size: 4rem;
+  color: var(--red-block);
 }
 
 /******************************* wrappers *******************/
@@ -365,6 +370,37 @@ ul {
     height: 8rem;
     width: 8rem;
   }
+
+  /************ user profile ******************/
+  .user-pic-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  .user-picture {
+    height: 20rem;
+    width: 20rem;
+    margin-right: 5rem;
+  }
+
+  .profile-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile-main-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-name{
+    font-size: 8rem;
+    color: var(--red-block);
+  }
 }
 
 @media screen and (min-width:900px) {
@@ -414,6 +450,23 @@ ul {
 
   .show-list {
     padding: 2rem 14rem;
+  }
+
+  /************ user profile ******************/
+  .profile-main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .user-picture {
+    height: 25rem;
+    width: 25rem;
+    margin-left: 8rem;
+  }
+
+  .profile-main-text {
+    padding-right: 12rem;
   }
 }
 
@@ -488,6 +541,14 @@ ul {
   .show-list {
     padding: 2rem 28rem 6rem 28rem;
   }
+
+  /************ user profile ******************/
+  .user-picture {
+    height: 26rem;
+    width: 26rem;
+    margin-right: 5rem;
+    margin-left: 10rem;
+  }
 }
 
 @media screen and (min-width:1800px) {
@@ -544,5 +605,22 @@ ul {
 
   .show-list {
     padding: 2rem 30rem 6rem 30rem;
+  }
+
+  /************ user profile ******************/
+  .user-picture {
+    height: 35rem;
+    width: 35rem;
+    margin-right: 10rem;
+  }
+
+  .profile-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user-name {
+    font-size: 10rem;
   }
 }

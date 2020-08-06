@@ -4,13 +4,17 @@
             <div class="user-pic-div">
                 <img src="{{user.image}}" alt="user image" class="user-picture">
             </div>
-            <p><b class="bold-item">Name:</b> {{user.name}}</p>
-            <a href="/private/profile/{{user._id}}/edit"><button class="btn btn-after">Edit</button></a>
+            <div class="profile-main-text">
+                <h1 class="user-name">{{user.name}}</h1>
+                <a href="/private/profile/{{user._id}}/edit"><button class="btn btn-after">Edit</button></a>
+                {{#if user.faveKillers}}
+                    <a href="/private/fav-killers/{{user._id}}"><button class="btn btn-after">Favorite Killers</button></a>
+                {{/if}}
+            </div>
+            
         </article>
-        <article class="profile-main">
-        {{#if user.faveKillers}}
-            <a href="/private/fav-killers/{{user._id}}"><button class="btn btn-after">Favorite Killers</button></a>
-        {{/if}}
+        <article class="profile-main-ifs">
+        
         {{#if user.killersCreated}}
             <h2>My Killers:</h2>
             {{#each user.killersCreated}}

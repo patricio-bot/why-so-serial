@@ -4,7 +4,7 @@
 
 ## Description
 
-Search and collaborative Data Base platform for Serial Killers in which you can read info about famous Serial Killers and you can also add new killer files, edit them and delete them. There's also a playground part in which you can be a detective! :mag:  Just enter a possible weapon or type of murder and you'll get the killer you're searching for! :knife:
+Search and collaborative Data Base platform for Serial Killers in which you can read info about famous Serial Killers and you can also add new killer files, edit them and delete them. :knife: You can also add to favorites the files you like the most and have a personal diplay of those or leave comments with lots of love or suggestions for the creators. :heart:
 
 
 
@@ -19,11 +19,11 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 - **Log In** - As users, we want to log in so we can see the amazing aditional features and create our profile! :sunglasses:
 - **Log Out** - As users, we want to close our session once we finished navigating through this amazing page so no one can get back to our account. :wave:
 - **Edit Profile** - As users, we want to be able to edit our profiles whenever we need it. :clown_face:
-- **Create Killer File** - As users, if we don't find a file about the killer we've been searching for, we want to be able to create that file ourselves. :new:
+- **Create Killer File** - As users, if we don't find a file about the killer we've been searching for, we want to be able to create that file ourselves and be able do see those displayed in our profile. :new:
 - **Edit Killer File** - As users, we want to edit the killer files if some information is not correct or there's a recent update. :bar_chart:
 - **Delete Killer File** - As users, we want to delete some of the killer files we've created anytime we need to. :x:
 - **Comments** - As users, we want to add comments to a particular killer file to make suggestions for the creator or to tell him/her how much we loved the detailed information he/she provided. :heart_eyes:
-- **Playground** - As users, if we don't know what to search for or we're bored of regular searching, we want to get a random killer file based on his/her particular weapons used or method of killing. We're detectives now so let's catch this murderer CSI style and resolve the mystery! :detective:
+- **Favorites** - As users, we want to add our favorite reads to a favorites list and display those anytime we want so we don't need to do the same search again. :heart:
 
 
 
@@ -32,23 +32,24 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 | **Method** | **Route**                  | **Description**                                              | **Request - Body**                                          |
 | ---------- | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `GET`      | `/`                        | Main page route. Renders home `index` view.                  |                                                              |
-| `GET`      | `/killers`                 | Renders `killers` view.                                      |                                                              |
-| `GET`      | `/killers/details/:id`     | Renders `details` view.                                      |                                                              |
-| `DELETE`   | `/private/delete-killer/:id`     | Executes delete button function and updated DB. Redirects to `killers` view. |                                                              |
-| `POST`     | `/private/review-killer/:id`     | Sends comments form data to the server, updates DB and renders `details` view. | {author, comment}                                            |
-| `GET`      | `/login`                   | Renders `auth/login` form view.                              |                                                              |
-| `POST`     | `/login`                   | Sends Log In form data to the server and redirects to `profile` view. | {email, password}                                            |
+| `GET`      | `/killers/alphabet/:letter` | Renders `killers` view.                                      |                                                              |
+| `GET` | `/killers/search/:zodiac` | Renders `killers` view. | |
+| `GET`      | `/killers/:killerId` | Renders `details` view.                                      |                                                              |
+| `POST`     | `/private/reviews/add`  | Sends comments form data to the server, updates DB and renders `details` view. | {author, comment}                                            |
 | `GET`      | `/signup`                  | Renders `auth/signup` form view.                             |                                                              |
-| `POST`     | `/signup`                  | Sends Sign Up info to the server and creates user in the DB. Redirects to `auth/login` view. | {name, email, password}                                      |
+| `POST`     | `/signup`                  | Sends Sign Up info to the server and creates user in the DB. Renders `auth/signup` view. | {name, email, password}                                      |
+| `GET`      | `/login`                   | Renders `auth/login` form view.                              |                                                              |
+| `POST`     | `/login`                   | Sends Log In form data to the server and redirects to homepage. | {email, password}                                            |
 | `GET`      | `/logout`                  | Logges user out and redirects to `index` view.               |                                                              |
-| `GET`      | `/private/profile/:id`         | Private route. Renders `profile` view.                       |                                                              |
-| `GET`      | `/private/profile/:id/edit`    | Private route. Renders `edit-profile` form view.             |                                                              |
-| `PUT`      | `/private/profile/:id/edit`    | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
-| `GET`      | `/private/add-killer`      | Private route. Renders `add-killer` form view.               |                                                              |
+| `GET`      | `/private/profile/:userId`    | Private route. Renders `private/profile` view.         |                                                              |
+| `GET`      | `/private/profile/:userId/edit` | Private route. Renders `private/edit-user` form view. |                                                              |
+| `POST`    | `/private/profile/:userId/edit` | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
+| `GET`      | `/private/add-killer`      | Private route. Renders `private/add-killer` form view.       |                                                              |
 | `POST`     | `/private/add-killer`      | Private route. Sends add-killer info to server and creates killer in DB. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
-| `GET`      | `/private/edit-killer/:id` | Private route. Renders `edit-killer` form view.              |                                                              |
-| `PUT`      | `/private/edit-killer/:id` | Private route. Sends edit-killer info to server and updates killer in DB and in `killers` view. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
-| `GET`      | `/private/cluedo`          | Private route. Renders `cluedo` view.                        |                                                              |
+| `GET`      | `/private/edit-killer` | Private route. Renders `private/edit-killer` form view.      |                                                              |
+| `POST`    | `/private/edit-killer` | Private route. Sends edit-killer info to server and updates killer in DB and in killers view. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
+| `POST` | `/private/delete-killer`     | Executes delete button function and updated DB. Redirects to `/private/profile/${userId}` view. |                                                              |
+| `POST`  | `/private/fave-killer` | Private route. Redirects to `/private/profile/${userId}` view. |                                                              |
 
 
 
@@ -75,7 +76,11 @@ Serial Killer model
   "victimProfile": String,
   "murderType": [String],
   "description": String,
-  "books": [String]
+  "books": [String],
+  "review": [{
+            user: String,
+            comments: String
+        		}]
   }
 ```
 
@@ -89,7 +94,9 @@ User model
   "name": String,
   "email": String,
   "password": String,
-  "isAuthor": { type: Boolean, default: false }
+  "isAuthor": { type: Boolean, default: false },
+  "killersCreate": [{ type: Schema.Types.ObjectId, ref: 'Killer' }],
+  "faveKillers: [{ type: Schema.Types.ObjectId, ref: 'Killer' }]
 }
 ```
 
@@ -110,7 +117,8 @@ Comment model
 ## Backlog
 
 - Insert a Cluedo game so the user can solve crime related riddles and catch the killer.
-- Edit password with email validation.
+- Allow password edit only with email validation.
+- Allow users to interact with each other and see others' profiles.
 - Create a public API with the db we made.
 
 

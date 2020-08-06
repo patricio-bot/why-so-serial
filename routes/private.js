@@ -8,8 +8,6 @@ const Killer = require('../models/killer');
 const User = require('../models/User');
 
 
-
-
 /* Session Middleware */
 router.use((req, res, next) => {
     if (req.session.currentUser) {
@@ -141,20 +139,6 @@ router.post('/delete-killer', (req, res, next) => {
             return res.status(404).render('not-found');
         });
 });
-
-router.post('/delete-killer', (req, res, next) => {
-    let killerId = req.params.killerId
-    const userId = req.session.currentUser._id
-
-    Killer.findByIdAndRemove({ '_id': killerId })
-        .then(() => {
-            res.redirect(`/private/profile/${userId}`)
-        })
-        .catch((error) => {
-            console.log(error)
-            return res.status(404).render('not-found');
-        })
-})
 
 /* USER PROFILE */
 
