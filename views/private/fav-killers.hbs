@@ -1,8 +1,36 @@
-<h1>My Favourite Killers</h1>
-{{#each user.faveKillers}}
-<a href="/killers/{{this._id}}">
-    <img src="{{this.image}}" alt="">
-    <p>{{this.name}} {{this.lastName}}</p>
-</a>
-{{/each}}
-{{> footerpartial this}}
+<div class="wrapper-killers">
+    <div class="main-killers">
+
+        <div class="killers-container">
+            <h1>My Favourite Killers</h1>
+            {{#each user.faveKillers}}
+            <div class="flip-card">
+
+                <div class="flip-card-side flip-card-front">
+                    <div class="flip-card-img-container">
+                        <div class="fake-shadow"></div>
+                        <img src="{{this.image}}" alt="">
+                    </div>
+                    <a href="/killers/{{this._id}}">
+                        <p class="killer-card-name">{{this.name}} {{this.lastName}}</p>
+                    </a>
+
+                </div>
+                <div class="flip-card-side flip-card-back">
+                    <div class="flip-card-back-details">
+                        <h3>{{this.name}} {{this.lastName}}</h3>
+                        <p>A.K.A: {{this.aka}}</p>
+                        <p>Birth Date: {{this.birthDate}}</p>
+                        <p>Zodiac Sign: {{this.zodiacSign}}</p>
+                        <p>Gender: {{this.gender}}</p>
+                        <p>Murder Type: {{this.murderType}}</p>
+                        <a class="read-more" href="/killers/{{this._id}}">
+                            <p>Read More</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{> footerpartial this}}

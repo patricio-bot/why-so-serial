@@ -73,16 +73,17 @@ router.get('/edit-killer', (req, res, next) => {
 router.post('/edit-killer', parser.single('photo'), (req, res, next) => {
     const userId = req.session.currentUser._id
 
-    let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
 
-    console.log(yearsActive, typeof yearsActive)
-    yearsActive = yearsActive.split(/[ ,]+/).sort((a, b) => a - b);
+
+    //console.log(yearsActive, typeof yearsActive)
+
+    //yearsActive = yearsActive.split(/[ ,]+/).sort((a, b) => a - b);
 
     const author = userId;
 
-
+    let image_url;
+    if (req.file) image_url = req.file.url;
     let defaultKillerImg;
-    let imgPath = req.file ? req.file.url : defaultKillerImg;
 
 
     Killer.findById(req.query.killer_id)
@@ -92,7 +93,10 @@ router.post('/edit-killer', parser.single('photo'), (req, res, next) => {
 
             let imgPath = req.file ? req.file.url : defaultKillerImg;
 
+
             let { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books } = req.body;
+
+            yearsActive = yearsActive.split(/[ ,]+/).sort((a, b) => a - b);
 
             let killerUpdated = { name, lastName, aka, gender, murderType, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, description, books, image: imgPath };
 
@@ -166,9 +170,9 @@ router.get('/fav-killers/:userId', (req, res, next) => {
         });
 })
 
-router.get('/profile/:userId/edit', (req, res, next) => {
+router.get('/edit-user', (req, res, next) => {
     const userId = req.session.currentUser._id
-    User.findOne({ '_id': userId })
+    User.findOne({ '_id': req.query.user_id })
         .then((user) => {
             res.render('private/edit-user', { user })
         })
@@ -178,9 +182,9 @@ router.get('/profile/:userId/edit', (req, res, next) => {
         })
 })
 
-router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, next) => {
+router.post('/edit-user', parser.single('profilepic'), (req, res, next) => {
 
-    let userId = req.params.userId;
+    let userId = req.query.user_id;
     let image_url;
     if (req.file) image_url = req.file.url;
 
@@ -188,17 +192,16 @@ router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, nex
 
 
 
-    User.findById(userId)
+    User.findById({ '_id': req.query.user_id })
         .then(theUserProfile => {
             previousUserImg = theUserProfile.image;
             let imgPath = req.file ? req.file.url : previousUserImg;
 
-            const { name, email, password } = req.body;
-            const salt = bcrypt.genSaltSync(saltRound);
-            const hashPassword = bcrypt.hashSync(password, salt);
-            const userUpdated = { name, email, image: imgPath, password: hashPassword };
+            const { name, email } = req.body;
 
-            User.update({ _id: userId }, userUpdated)
+            const userUpdated = { name, email, image: imgPath };
+
+            User.update({ '_id': req.query.user_id }, userUpdated)
                 .then(() => User.findById(userId))
                 .then(userUpdated => {
 

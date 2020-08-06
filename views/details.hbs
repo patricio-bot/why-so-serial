@@ -125,7 +125,7 @@
         </div>
         {{#if killer.author}}
         {{#ifeqId killer.author currentUserInfo._id}}
-        <a class="edit-btn" href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
+        <a class="btn btn-after" href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
         <form action="/private/delete-killer?killer_id={{killer._id}}" method="post">
             <button class="btn btn-after" type="submit">Delete</button>
         </form>
