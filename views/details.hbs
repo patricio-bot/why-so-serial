@@ -141,11 +141,13 @@
                 </div>
 
             </form>
+            {{#if currentUserInfo._id}}
             <form class="form-fave" action="/private/fave-killer?killer_id={{killer._id}}" method="post">
                 <div class="form-group">
                     <button class="btn btn-after" type="submit">Fave</button>
                 </div>
             </form>
+            {{/if}}
 
         </div>
         {{#if killer.author}}
