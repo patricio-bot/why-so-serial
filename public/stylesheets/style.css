@@ -413,9 +413,6 @@ ul {
   padding-bottom: 4rem;
 }
 
-.profile-main-ifs {
-  padding: 2rem;
-}
 
 .user-name {
   font-size: 4rem;
@@ -437,7 +434,6 @@ ul {
 .main {
   flex-grow: 1;
   display: flex;
-  /*  align-items: center; */
   flex-wrap: nowrap;
   flex-direction: column;
 }
@@ -449,6 +445,11 @@ ul {
   display: flex;
   flex-direction: column;
   padding: 15rem 0;
+
+}
+
+.form-input {
+  text-transform: capitalize;
 }
 
 .form-bg {
@@ -610,6 +611,7 @@ body>div>div>div:nth-child(1)>div:nth-child(1) {
 .killer-box-detail {
   text-align: left;
   padding-top: 2rem;
+  text-transform: capitalize;
 }
 
 .killer-box-margin {
@@ -682,6 +684,28 @@ textarea {
   margin-bottom: 3rem;
 }
 
+.edit-killer-link {
+  display: block;
+}
+
+.details-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+
+}
+
+
+.details-row p {
+  margin-right: 1rem;
+  text-transform: capitalize;
+}
+
+.murder-paragraph {
+  text-transform: capitalize;
+}
+
 /*********************** killer cards *****************/
 .wrapper-killers {
   min-height: 100vh;
@@ -717,10 +741,12 @@ textarea {
   margin: 0 auto 9rem;
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  text-transform: capitalize;
 }
 
 .flip-card-side {
   max-width: 22rem;
+  text-transform: capitalize;
   height: 35rem;
   background-color: var(--dirty-white);
   transition: all 0.8s ease;
@@ -766,12 +792,14 @@ textarea {
 }
 
 .flip-card-back {
+  text-transform: capitalize;
   transform: rotateY(180deg);
   background-color: var(--red-block);
   color: white;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  padding: 4rem 2rem;
 }
 
 .flip-card:hover .flip-card-front {
@@ -787,16 +815,18 @@ textarea {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
+  width: 80%;
+  margin: auto;
+  text-align: left;
   background-color: var(--red-block);
   color: white;
-  padding: 0 1rem;
+  padding: 4rem 1rem;
   text-align: left;
   background-image: url(../images/fingerprint-red.png);
-  background-size: 60%;
+  background-size: 80%;
   background-position: center center;
   background-repeat: no-repeat;
+  text-transform: capitalize;
 }
 
 .flip-card-back-details h3 {
@@ -815,6 +845,7 @@ textarea {
 .killer-card-name {
   margin-top: 1.5rem;
   color: black;
+  text-transform: capitalize;
 }
 
 .read-more {
@@ -825,6 +856,21 @@ textarea {
 .read-more p {
   border-bottom: 1px solid var(--links);
 }
+
+.wrapper-killers-created {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.killers-title-user {
+  margin: 1rem auto 0;
+  border-bottom: 1px solid black;
+  width: 50%;
+
+}
+
+
 
 /********************** fave killers **********/
 .fave-container {
@@ -971,32 +1017,6 @@ textarea {
 
 
 
-  /************/
-
-
-
-  .profile-main {
-    padding: 10rem 4rem 0;
-  }
-
-  .profile-main-text {
-    padding-bottom: 4rem;
-  }
-
-  .profile-main-ifs {
-    padding: 2rem;
-  }
-
-  .user-name {
-    font-size: 4rem;
-    color: var(--red-block);
-  }
-
-  .btn-edit {
-    display: block;
-    margin-bottom: 2rem;
-    width: 100%;
-  }
 }
 
 @media screen and (min-width:900px) {
@@ -1021,6 +1041,7 @@ textarea {
     position: static;
     transform: initial;
     width: 80%;
+    height: auto;
     transition: none;
     margin-right: 2rem;
     padding: 0;
@@ -1098,6 +1119,7 @@ textarea {
     font-size: 1.7rem;
     height: 9rem;
     width: 9rem;
+    outline: none;
   }
 
   .letter-btn {
@@ -1115,7 +1137,7 @@ textarea {
   }
 
   /************ user profile ******************/
-  .profile-main {
+  /*   .profile-main {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -1129,7 +1151,7 @@ textarea {
 
   .profile-main-text {
     padding-right: 12rem;
-  }
+  } */
 }
 
 @media screen and (min-width:1200px) {

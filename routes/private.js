@@ -24,14 +24,14 @@ router.get('/add-killer', (req, res, next) => {
 
 
 router.post('/add-killer', parser.single('photo'), (req, res, next) => {
-    const { name, lastName, aka, gender, murderType, birthDate, zodiacSign } = req.body;
+    const { name, lastName, aka, murderType, zodiacSign, numberOfVictimsConfirmed, numberOfVictimsPossible } = req.body;
     let imgPath;
     if (req.file) imgPath = req.file.url;
     const userId = req.session.currentUser._id;
     const userInfo = { isAuthor: true };
-    const newKiller = new Killer({ name, lastName, aka, gender, murderType, birthDate, zodiacSign, author: userId, image: imgPath });
-    if (name === '' || lastName === '' || murderType === '' || aka === '' || gender === '' || birthDate === '' || zodiacSign === '') {
-        res.render('private/add-killer', { errorMessage: 'The fields: name, last name, murder type, birth date, zodiac sign, aka and gender are required' });
+    const newKiller = new Killer({ name, lastName, aka, murderType, zodiacSign, numberOfVictimsConfirmed, numberOfVictimsPossible, author: userId, image: imgPath });
+    if (name === '' || lastName === '' || murderType === '' || aka === '' || numberOfVictimsConfirmed === '' || numberOfVictimsPossible === '' || zodiacSign === '') {
+        res.render('private/add-killer', { errorMessage: 'The fields: name, last name, murder type, zodiac sign, aka ,numberOfVictimsConfirmed and numberOfVictimsPossible are required' });
         return;
     }
     Killer.findOne({ lastName })

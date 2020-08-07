@@ -64,36 +64,51 @@
                 <p>{{killer.victimProfile}}</p>
                 {{/if}}
             </article>
+
             <article>
                 <h3>Murder Type:</h3>
                 {{#if killer.murderType.[1]}}
-                {{#each killer.murderType}}
-                <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
-                {{/each}}
+
+
+                <div class="details-row">
+                    {{#each killer.murderType}}
+                    <p class="murder-paragraph">{{#unless @last}}|&nbsp;{{this}} {{/unless}}{{#if @last}}{{this}}{{/if}}
+                    </p>
+                    {{/each}}
+                </div>
                 {{else}}
                 <p>{{killer.murderType}}</p>
+
                 {{/if}}
             </article>
+
+
+
+            {{#if killer.weapons.[0]}}
             <article>
-                {{#if killer.weapons.[0]}}
                 <h3>Weapons Used:</h3>
-                {{#if killer.weapons.[1]}}
-                {{#each killer.weapons}}
-                <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
-                {{/each}}
+                <div class="details-row">
+                    {{#if killer.weapons.[1]}}
+                    {{#each killer.weapons}}
+                    <p>{{#unless @last}}|&nbsp;{{this}} {{/unless}}{{#if @last}}{{this}}{{/if}}</p>
+                    {{/each}}
+                </div>
                 {{else}}
                 <p>{{killer.weapons}}</p>
                 {{/if}}
-                {{/if}}
             </article>
+            {{/if}}
+
+
+            {{#if killer.books.[0]}}
             <article>
-                {{#if killer.books.[0]}}
                 <h3>Books:</h3>
                 {{#each killer.books}}
                 <p>- {{this}}</p>
                 {{/each}}
-                {{/if}}
             </article>
+            {{/if}}
+
         </div>
         <div class="reviews-container">
             <h2>Reviews</h2>
@@ -115,20 +130,30 @@
                     <textarea class="form-input" name="comments" id="comments-input" placeholder="Comments"></textarea>
                     <label class="form-label" for="comments-input">Comments</label>
                 </div>
+
+            </form>
+
+        </div>
+        {{#if killer.author._id}}
+        {{#ifeqId killer.author currentUserInfo._id}}
+        <div class="fave-section">
+            <form class="form-fave" action="/private/fave-killer?killer_id={{killer._id}}" method="post">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-after">Add</button>
+                    <button class="btn btn-after" type="submit">Fave</button>
                 </div>
             </form>
-            <form class="form-fave" action="/private/fave-killer?killer_id={{killer._id}}" method="post">
-                <button class="btn btn-after" type="submit">Fave</button>
+
+            <div class=" form-fave form-group">
+                <a class="edit-killer-link" href="/private/edit-killer?killer_id={{killer._id}}"><button
+                        class="btn btn-after">Edit</button></a>
+            </div>
+
+            <form action="/private/delete-killer?killer_id={{killer._id}}" method="post">
+                <div class="form-fave form-group">
+                    <button class="btn btn-after" type="submit">Delete</button>
+                </div>
             </form>
         </div>
-        {{#if killer.author}}
-        {{#ifeqId killer.author currentUserInfo._id}}
-        <a class="btn btn-after" href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
-        <form action="/private/delete-killer?killer_id={{killer._id}}" method="post">
-            <button class="btn btn-after" type="submit">Delete</button>
-        </form>
 
         {{/ifeqId}}
         {{#ifneqId killer.author currentUserInfo._id}}

@@ -1,6 +1,13 @@
+<header class="header"></header>
+
+
+
 <div class="wrapper-killers">
     <div class="main-killers">
-
+        <blockquote class="killer-quote">
+            <h2>“Life without murder is like a life for you without food”
+                -Alexander Yuryevich PICHUSHKIN</h2>
+        </blockquote>
         <div class="killers-container">
             <h1>My Favourite Killers</h1>
             {{#each user.faveKillers}}
@@ -23,7 +30,7 @@
                         <p>Birth Date: {{this.birthDate}}</p>
                         <p>Zodiac Sign: {{this.zodiacSign}}</p>
                         <p>Gender: {{this.gender}}</p>
-                        <p>Murder Type: {{this.murderType}}</p>
+                        <p class="murder-paragraph">Murder Type: {{this.murderType}}</p>
                         <a class="read-more" href="/killers/{{this._id}}">
                             <p>Read More</p>
                         </a>
