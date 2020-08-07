@@ -1,5 +1,13 @@
+<header class="header"></header>
+
+
 <div class="wrapper-killers">
     <div class="main-killers">
+        <blockquote class="killer-quote">
+            <p>A clown can get away with murder
+            </p>
+            <span>John Wayme Gacy</span>
+        </blockquote>
         <div class="killers-title">
             <h1>Killers</h1>
         </div>
@@ -41,11 +49,13 @@
             </div>
             {{/each}}
         </div>
-        <p>If you haven't found the killer you're looking for you can create one <a href="/private/add-killer">here</a>!
+        <p class="not-session-user">If you haven't found the killer you're looking for you can create one <a
+                href="/private/add-killer">here</a>!
         </p>
         <div class="back-link"><a href="/"><button class="btn btn-after"> Back</button></a></div>
         {{else}}
-        <p>Sorry, there are no killers that fit into this parameters. <a href="/private/add-killer">But you can create
+        <p class="not-session-user">Sorry, there are no killers that fit into this parameters. <a
+                href="/private/add-killer">But you can create
                 one
                 here!</a></p>
         {{/if}}

@@ -8,14 +8,14 @@
             <form class="form" action="/private/edit-user?user_id={{user._id}}" method="POST"
                 enctype="multipart/form-data">
                 <div class="form-group">
-                    <input class="form-input" type="text" name="name" value="{{user.name}}" placeholder="Name"
-                        id="name-input">
+                    <input class="form-input form-capitalize" type="text" name="name" value="{{user.name}}"
+                        placeholder="Name" id="name-input">
                     <label class="form-label" for="name-input">Username</label>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-input" type="text" name="email" value="{{user.email}}" placeholder="New email"
-                        id="email-input">
+                    <input class="form-input form-capitalize" type="text" name="email" value="{{user.email}}"
+                        placeholder="New email" id="email-input">
                     <label class="form-label" for="email-input">New Email</label>
                 </div>
 

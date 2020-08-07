@@ -42,8 +42,8 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 | `POST`     | `/login`                   | Sends Log In form data to the server and redirects to homepage. | {email, password}                                            |
 | `GET`      | `/logout`                  | Logges user out and redirects to `index` view.               |                                                              |
 | `GET`      | `/private/profile/:userId`    | Private route. Renders `private/profile` view.         |                                                              |
-| `GET`      | `/private/profile/:userId/edit` | Private route. Renders `private/edit-user` form view. |                                                              |
-| `POST`    | `/private/profile/:userId/edit` | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
+| `GET`      | `/private/edit-user` | Private route. Renders `private/edit-user` form view. |                                                              |
+| `POST`    | `/private/edit-user` | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
 | `GET`      | `/private/add-killer`      | Private route. Renders `private/add-killer` form view.       |                                                              |
 | `POST`     | `/private/add-killer`      | Private route. Sends add-killer info to server and creates killer in DB. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
 | `GET`      | `/private/edit-killer` | Private route. Renders `private/edit-killer` form view.      |                                                              |

@@ -1,5 +1,12 @@
+<header class="header"></header>
+
 <div class="wrapper">
     <div class="main">
+        <blockquote class="killer-quote">
+            <p>I live in my mind now. With my babies (victims), in my drawings.
+            </p>
+            <span>Samuel Little</span>
+        </blockquote>
         <article class="profile-main">
             <div class="user-pic-div">
                 <img src="{{user.image}}" alt="user image" class="user-picture">
@@ -9,8 +16,7 @@
                 <a class=" btn-edit" href="/private/edit-user?user_id={{user._id}}"><button
                         class="btn btn-after">Edit</button></a>
                 {{#if user.faveKillers}}
-                <a class="btn-edit" href="/private/fav-killers/{{user._id}}"><button
-                        class="btn btn-after btn-fave">Favorite
+                <a class="btn-edit" href="/private/fav-killers/{{user._id}}"><button class="btn btn-after btn-fave">Fave
                         Killers</button></a>
                 {{/if}}
             </div>

@@ -11,40 +11,43 @@
             </div>
             <form class="form" action="/private/add-killer" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <input class="form-input" type="text" name="name" id="name-input" placeholder="Name">
+                    <input class="form-input form-capitalize" type="text" name="name" id="name-input"
+                        placeholder="Name">
                     <label class="form-label" for="name-input">Killer's Name</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="text" name="lastName" id="lastname-input" placeholder="Last Name">
+                    <input class="form-input form-capitalize" type="text" name="lastName" id="lastname-input"
+                        placeholder="Last Name">
                     <label class="form-label" for="lastname-input">Killer's Last Name</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="number" name="numberOfVictimsConfirmed" id="victims-input"
-                        placeholder="Victims Confirmed" value="{{killer.numberOfVictimsConfirmed}}">
+                    <input class="form-input form-capitalize" type="number" name="numberOfVictimsConfirmed"
+                        id="victims-input" placeholder="Victims Confirmed" value="{{killer.numberOfVictimsConfirmed}}">
                     <label class="form-label" for="victims-input">Victims Confirmed</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="number" name="numberOfVictimsPossible" id="victims-posible-input"
-                        placeholder="Possible Victims" value="{{killer.numberOfVictimsPossible}}">
+                    <input class="form-input form-capitalize" type="number" name="numberOfVictimsPossible"
+                        id="victims-posible-input" placeholder="Possible Victims"
+                        value="{{killer.numberOfVictimsPossible}}">
                     <label class="form-label" for="victims-posible-input">Possible Victims</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="text" name="aka" id="aka-input" placeholder="AKA">
+                    <input class="form-input form-capitalize" type="text" name="aka" id="aka-input" placeholder="AKA">
                     <label class="form-label" for="aka-input">Killer's AKA</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="text" name="zodiacSign" id="zodiacSign-input"
+                    <input class="form-input form-capitalize" type="text" name="zodiacSign" id="zodiacSign-input"
                         placeholder="Zodiac Sign">
                     <label class="form-label" for="zodiacSign-input">Zodiac Sign</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="text" name="murderType" id="murderType-input"
+                    <input class="form-input form-capitalize" type="text" name="murderType" id="murderType-input"
                         placeholder="Murder Type">
                     <label class="form-label" for="murderType-input">Murder Type</label>
                 </div>
                 <div class="form-group">
+                    <input class="form-input form-capitalize" type="file" name="photo" id="photo-input">
                     <label class="form-label" for="photo-input">Poster</label>
-                    <input class="form-input" type="file" name="photo" id="photo-input">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-after">Add</button>

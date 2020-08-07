@@ -1,6 +1,14 @@
+<header class="header"></header>
+
+
+
 <div class="wrapper">
     <div class="main">
-
+        <blockquote class="killer-quote">
+            <p>I believe the only way to reform people is to kill them
+            </p>
+            <span>Carl Panzram</span>
+        </blockquote>
         <div class="killer-box-1">
             <div class="killer-box-intro">
                 <div class="killer-box-detail">
@@ -72,7 +80,7 @@
 
                 <div class="details-row">
                     {{#each killer.murderType}}
-                    <p class="murder-paragraph">{{#unless @last}}|&nbsp;{{this}} {{/unless}}{{#if @last}}{{this}}{{/if}}
+                    <p class="murder-paragraph">{{#unless @last}}{{this}} | {{/unless}}{{#if @last}}{{this}}{{/if}}
                     </p>
                     {{/each}}
                 </div>
@@ -81,16 +89,13 @@
 
                 {{/if}}
             </article>
-
-
-
             {{#if killer.weapons.[0]}}
             <article>
                 <h3>Weapons Used:</h3>
                 <div class="details-row">
                     {{#if killer.weapons.[1]}}
                     {{#each killer.weapons}}
-                    <p>{{#unless @last}}|&nbsp;{{this}} {{/unless}}{{#if @last}}{{this}}{{/if}}</p>
+                    <p>{{#unless @last}}{{this}} | {{/unless}}{{#if @last}}{{this}}{{/if}}</p>
                     {{/each}}
                 </div>
                 {{else}}
@@ -104,7 +109,7 @@
             <article>
                 <h3>Books:</h3>
                 {{#each killer.books}}
-                <p>- {{this}}</p>
+                <p class="books">- {{this}}</p>
                 {{/each}}
             </article>
             {{/if}}
@@ -114,13 +119,14 @@
             <h2>Reviews</h2>
             {{#each killer.reviews}}
             <div class="review-item">
-                <p>{{this.comments}}</p>
                 <span>{{this.user}}</span>
+                <p>{{this.comments}}</p>
+
             </div>
             {{/each}}
             <p>Add A Comment</p>
 
-            <form class="form" action="/reviews/add?killer_id={{killer._id}}" method="post">
+            <form class="form form-comment" action="/reviews/add?killer_id={{killer._id}}" method="post">
 
                 <div class="form-group">
                     <input class="form-input" type="text" name="user" id="user-input" placeholder="Username">
@@ -130,8 +136,12 @@
                     <textarea class="form-input" name="comments" id="comments-input" placeholder="Comments"></textarea>
                     <label class="form-label" for="comments-input">Comments</label>
                 </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Add</button>
+                </div>
 
             </form>
+
 
         </div>
         {{#if killer.author._id}}
@@ -157,7 +167,7 @@
 
         {{/ifeqId}}
         {{#ifneqId killer.author currentUserInfo._id}}
-        <p>you cannot Delete or Edit a Killer that you have not created.</p>
+        <p class="not-session-user">you cannot Delete or Edit a Killer that you have not created.</p>
         {{/ifneqId}}
         {{/if}}
         <div class="back-link"><a href="/"><button class="btn btn-after"> Back</button></a></div>

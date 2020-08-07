@@ -14,6 +14,7 @@
   --links-hover: #fab6b6;
   --dirty-white: #efeeec;
   --pink-btns: #c55c68;
+  --grey: #a49c9a;
 }
 
 img {
@@ -130,7 +131,7 @@ p {
 }
 
 .logo-nav {
-  width: 20%;
+  width: 22%;
   margin: 1rem;
   z-index: -300;
   padding: 1rem;
@@ -277,11 +278,12 @@ p {
   text-align: center;
 }
 
-/* Horitzontal Scroll */
+/* Horizontal Scroll */
 
-.horitzontal-scroll {
-  padding: 1rem;
-  padding-right: 2rem;
+.horizontal-scroll {
+  padding: 1rem 2rem 1rem 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .hs {
@@ -331,7 +333,8 @@ ul {
 
 /* Main Buttons */
 .main-btns {
-  margin-bottom: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   width: 100%;
   padding: 1rem;
   position: relative;
@@ -402,15 +405,22 @@ ul {
 
 .user-picture {
   height: 20rem;
-  width: 20rem;
+  max-width: 20rem;
 }
 
 .profile-main {
   padding: 10rem 4rem 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-main-text {
   padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 
@@ -418,6 +428,7 @@ ul {
   font-size: 4rem;
   color: var(--red-block);
 }
+
 
 .btn-edit {
   display: block;
@@ -448,7 +459,7 @@ ul {
 
 }
 
-.form-input {
+.form-capitalize {
   text-transform: capitalize;
 }
 
@@ -566,21 +577,26 @@ ul {
 
 /**************** footer *****************/
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 0;
+  padding: 3rem;
+  background-color: var(--red-block);
+  text-align: center;
 }
 
 .footer-links {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
 }
 
+
 .footer-links a {
-  margin-left: 2rem;
+  font-size: 1.4rem;
+  color: var(--links);
+  padding: 1rem;
 }
+
+
 
 /********************** killer details **********************/
 body>div>div>div:nth-child(1)>div:nth-child(1) {
@@ -594,11 +610,15 @@ body>div>div>div:nth-child(1)>div:nth-child(1) {
 }
 
 .killer-box-1 {
-  padding-top: 20rem;
+  padding-top: 2rem;
 }
 
 .killer-box {
-  padding-top: 2rem;
+  padding: 2rem 4rem 0;
+}
+
+.books {
+  overflow: hidden;
 }
 
 .killer-box-intro {
@@ -670,6 +690,19 @@ article {
   margin: 0 auto;
 }
 
+.review-item {
+  margin-bottom: 2rem;
+}
+
+.review-item span {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.form-comment {
+  margin-bottom: 2rem;
+}
+
 textarea {
   resize: vertical;
 }
@@ -693,9 +726,7 @@ textarea {
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: nowrap;
-
 }
-
 
 .details-row p {
   margin-right: 1rem;
@@ -704,6 +735,10 @@ textarea {
 
 .murder-paragraph {
   text-transform: capitalize;
+}
+
+.not-session-user {
+  padding: 2rem 3rem;
 }
 
 /*********************** killer cards *****************/
@@ -726,7 +761,10 @@ textarea {
 }
 
 .killers-title {
-  margin-top: 15rem;
+  margin: 1rem auto 0;
+  border-bottom: 1px solid black;
+  width: 50%;
+
 }
 
 .flip-card {
@@ -881,15 +919,46 @@ textarea {
   margin-bottom: 3rem;
 }
 
-
-/************************* footer ************************/
-.footer {
-  background-color: var(--red-block);
+.killer-quote {
+  width: 60%;
+  margin: 5rem auto;
+  font-style: italic;
+  background-color: var(--grey);
+  color: var(--dirty-white);
+  padding: 2rem;
+  border-left: .4rem solid var(--red-block);
+  position: relative;
 }
 
-.footer-links a {
-  color: var(--links);
+.killer-quote::before {
+  content: "\201C";
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--red-block);
+  font-size: 5rem;
+  position: absolute;
+  top: -1rem;
+  left: 1rem;
 }
+
+.killer-quote::after {
+  content: "";
+}
+
+.killer-quote span {
+  display: block;
+  color: #444140;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.killers-title-fave {
+  margin: 1rem auto 0;
+  border-bottom: 1px solid black;
+  width: 70%;
+
+}
+
+
 
 /******************************************************************************************************** media queries **************************************************************/
 @media screen and (min-width:600px) {
@@ -949,9 +1018,17 @@ textarea {
     margin-top: 4rem;
   }
 
+  .killer-quote {
+    padding: 3rem 5rem;
+  }
+
+  .killer-quote::before {
+    font-size: 8rem;
+  }
+
   /* home */
   .header {
-    height: 45vh;
+    height: 50vh;
   }
 
   .explanation {
@@ -995,27 +1072,10 @@ textarea {
     margin-right: 5rem;
   }
 
-  .profile-main {
-    display: flex;
-
-  }
-
-  .profile-main-text {
-    display: flex;
-    flex-direction: column;
-    /*  justify-content: center;
-    align-items: flex-start; */
-    width: 80%;
-  }
-
-
-
   .user-name {
-    font-size: 8rem;
-    color: var(--red-block);
+    font-size: 6rem;
+
   }
-
-
 
 }
 
@@ -1087,6 +1147,22 @@ textarea {
     width: 60%;
   }
 
+  .killer-quote {
+    padding: 4rem 5rem;
+  }
+
+  .killer-quote::before {
+    font-size: 8rem;
+  }
+
+  .killer-quote p {
+    font-size: 2rem;
+  }
+
+  .killer-quote span {
+    font-size: 2rem;
+  }
+
   /* home */
   .header {
     height: 60vh;
@@ -1155,6 +1231,10 @@ textarea {
 }
 
 @media screen and (min-width:1200px) {
+  .logo-nav {
+    width: 10%;
+  }
+
   .killers-container {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -1168,9 +1248,25 @@ textarea {
     padding-left: 10rem;
   }
 
+  .killer-quote {
+    padding: 6rem 5rem;
+  }
+
+  .killer-quote::before {
+    font-size: 12rem;
+  }
+
+  .killer-quote p {
+    font-size: 3rem;
+  }
+
+  .killer-quote span {
+    font-size: 2.4rem;
+  }
+
   /* home */
   .header {
-    height: 60vh;
+    height: 70vh;
     background-size: cover;
   }
 
@@ -1249,10 +1345,13 @@ textarea {
 }
 
 @media screen and (min-width:1800px) {
+  .logo-nav {
+    width: 8%;
+  }
 
   /* home */
   .header {
-    height: 50vh;
+
     background-size: cover;
   }
 
