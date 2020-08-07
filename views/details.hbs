@@ -137,21 +137,21 @@
                     <label class="form-label" for="comments-input">Comments</label>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn">Add</button>
+                    <button type="submit" class="btn">Add Review</button>
                 </div>
 
             </form>
-
-
-        </div>
-        {{#if killer.author._id}}
-        {{#ifeqId killer.author currentUserInfo._id}}
-        <div class="fave-section">
             <form class="form-fave" action="/private/fave-killer?killer_id={{killer._id}}" method="post">
                 <div class="form-group">
                     <button class="btn btn-after" type="submit">Fave</button>
                 </div>
             </form>
+
+        </div>
+        {{#if killer.author}}
+        {{#ifeqId killer.author currentUserInfo._id}}
+        <div class="fave-section">
+
 
             <div class=" form-fave form-group">
                 <a class="edit-killer-link" href="/private/edit-killer?killer_id={{killer._id}}"><button

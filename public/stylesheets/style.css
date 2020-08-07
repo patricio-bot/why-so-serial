@@ -397,14 +397,12 @@ ul {
 
 /************ user profile ******************/
 .user-pic-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   padding-bottom: 2rem;
 }
 
 .user-picture {
-  height: 20rem;
+
   max-width: 20rem;
 }
 
@@ -423,10 +421,17 @@ ul {
   text-align: center;
 }
 
+.profile-bg {
+  background-image: url(../images/rope.png);
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
 
 .user-name {
   font-size: 4rem;
   color: var(--red-block);
+  text-transform: capitalize;
 }
 
 
@@ -682,7 +687,7 @@ body>div>div>div:nth-child(1)>div:nth-child(1) {
 }
 
 article {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .reviews-container {
@@ -958,6 +963,9 @@ textarea {
 
 }
 
+.killer-quote-profile {
+  margin: auto;
+}
 
 
 /******************************************************************************************************** media queries **************************************************************/
@@ -1026,6 +1034,7 @@ textarea {
     font-size: 8rem;
   }
 
+
   /* home */
   .header {
     height: 50vh;
@@ -1067,14 +1076,12 @@ textarea {
 
   /************ user profile ******************/
 
-
-  .user-picture {
-    margin-right: 5rem;
-  }
-
   .user-name {
     font-size: 6rem;
+  }
 
+  .profile-main {
+    padding: 15rem 4rem 0;
   }
 
 }
@@ -1151,6 +1158,8 @@ textarea {
     padding: 4rem 5rem;
   }
 
+
+
   .killer-quote::before {
     font-size: 8rem;
   }
@@ -1212,22 +1221,6 @@ textarea {
     padding: 2rem 14rem;
   }
 
-  /************ user profile ******************/
-  /*   .profile-main {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .user-picture {
-    height: 25rem;
-    width: 25rem;
-    margin-left: 8rem;
-  }
-
-  .profile-main-text {
-    padding-right: 12rem;
-  } */
 }
 
 @media screen and (min-width:1200px) {
@@ -1335,13 +1328,8 @@ textarea {
     padding: 2rem 28rem 6rem 28rem;
   }
 
-  /************ user profile ******************/
-  .user-picture {
-    height: 26rem;
-    width: 26rem;
-    margin-right: 5rem;
-    margin-left: 10rem;
-  }
+
+
 }
 
 @media screen and (min-width:1800px) {

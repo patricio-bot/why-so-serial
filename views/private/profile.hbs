@@ -1,67 +1,64 @@
-<header class="header"></header>
-
 <div class="wrapper">
     <div class="main">
-        <blockquote class="killer-quote">
-            <p>I live in my mind now. With my babies (victims), in my drawings.
-            </p>
-            <span>Samuel Little</span>
-        </blockquote>
-        <article class="profile-main">
-            <div class="user-pic-div">
-                <img src="{{user.image}}" alt="user image" class="user-picture">
-            </div>
-            <div class="profile-main-text">
-                <h1 class="user-name">{{user.name}}</h1>
-                <a class=" btn-edit" href="/private/edit-user?user_id={{user._id}}"><button
-                        class="btn btn-after">Edit</button></a>
-                {{#if user.faveKillers}}
-                <a class="btn-edit" href="/private/fav-killers/{{user._id}}"><button class="btn btn-after btn-fave">Fave
-                        Killers</button></a>
-                {{/if}}
-            </div>
-
-        </article>
-        <article class="profile-main-ifs">
-            <div class="wrapper-killers-created">
-
-                {{#if user.killersCreated}}
-                <div class="killers-title-user">
-                    <h2>My Killers</h2>
+        <div class="profile-bg">
+            <article class="profile-main">
+                <div class="user-pic-div">
+                    <img src="{{user.image}}" alt="user image" class="user-picture">
                 </div>
-                <div class="killers-container">
-                    {{#each user.killersCreated}}
-                    <div class="flip-card">
-                        <div class="flip-card-side flip-card-front">
-                            <div class="flip-card-img-container">
-                                <div class="fake-shadow"></div>
-                                <img src="{{this.image}}" alt="">
-                            </div>
-                            <a href="/killers/{{this._id}}">
-                                <p class="killer-card-name">{{this.name}} {{this.lastName}}</p>
-                            </a>
-                        </div>
-                        <div class="flip-card-side flip-card-back">
-                            <div class="flip-card-back-details">
-                                <h3>{{this.name}} {{this.lastName}}</h3>
-                                <p>A.K.A: {{this.aka}}</p>
-                                <p>Birth Date: {{this.birthDate}}</p>
-                                <p>Zodiac Sign: {{this.zodiacSign}}</p>
-                                <p>Gender: {{this.gender}}</p>
-                                <p>Murder Type: {{this.murderType}}</p>
-                                <a class="read-more" href="/killers/{{this._id}}">
-                                    <p>Read More</p>
+                <div class="profile-main-text">
+                    <h1 class="user-name">{{user.name}}</h1>
+                    <a class=" btn-edit" href="/private/edit-user?user_id={{user._id}}"><button
+                            class="btn btn-after">Edit</button></a>
+                    {{#if user.faveKillers}}
+                    <a class="btn-edit" href="/private/fav-killers/{{user._id}}"><button
+                            class="btn btn-after btn-fave">Fave
+                            Killers</button></a>
+                    {{/if}}
+                </div>
+            </article>
+            <blockquote class="killer-quote killer-quote-profile">
+                <p>I live in my mind now. With my babies (victims), in my drawings.
+                </p>
+                <span>Samuel Little</span>
+            </blockquote>
+            <article class="profile-main-ifs">
+                <div class="wrapper-killers-created">
+
+                    {{#if user.killersCreated}}
+                    <div class="killers-title-user">
+                        <h2>My Killers</h2>
+                    </div>
+                    <div class="killers-container">
+                        {{#each user.killersCreated}}
+                        <div class="flip-card">
+                            <div class="flip-card-side flip-card-front">
+                                <div class="flip-card-img-container">
+                                    <div class="fake-shadow"></div>
+                                    <img src="{{this.image}}" alt="">
+                                </div>
+                                <a href="/killers/{{this._id}}">
+                                    <p class="killer-card-name">{{this.name}} {{this.lastName}}</p>
                                 </a>
                             </div>
+                            <div class="flip-card-side flip-card-back">
+                                <div class="flip-card-back-details">
+                                    <h3>{{this.name}} {{this.lastName}}</h3>
+                                    <p>A.K.A: {{this.aka}}</p>
+                                    <p>Zodiac Sign: {{this.zodiacSign}}</p>
+                                    <a class="read-more" href="/killers/{{this._id}}">
+                                        <p>Read More</p>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
+                        {{/each}}
+
                     </div>
-                    {{/each}}
+                    {{/if}}
 
                 </div>
-                {{/if}}
-
-            </div>
-        </article>
+            </article>
+        </div>
     </div>
 </div>
 
